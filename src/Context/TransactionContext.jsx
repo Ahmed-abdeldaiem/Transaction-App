@@ -8,13 +8,13 @@ export let TransactionContext=  createContext()
 
 
 export default function TransactionContextProvider(props) {
-
+baseUrl='transaction-app-six.vercel.app'
 
     const [totalTrans, setTotalTrans] = useState([])
     const [totalAmount, setTotalAmount] = useState(0)
     function getAllTrans(){
       // console.log('show context');
-        return axios.get('http://localhost:5000/transactions')
+        return axios.get(`${baseUrl}/transactions`)
         .then((data)=>{
             // console.log(data);
             return data
@@ -27,7 +27,7 @@ export default function TransactionContextProvider(props) {
     
     function getSpecificTrans(customerId){
 
-        return axios.get(`http://localhost:5000/transactions?customer_id=${customerId}`)
+        return axios.get(`${baseUrl}/transactions?customer_id=${customerId}`)
         .then((data)=>{
             // console.log(data.data);
             
@@ -46,7 +46,7 @@ export default function TransactionContextProvider(props) {
     }
     function getAllSpecificTrans(customerId){
 
-        return axios.get(`http://localhost:5000/transactions?customer_id=${customerId}`)
+        return axios.get(`${baseUrl}/transactions?customer_id=${customerId}`)
         .then((trans)=>{
             // console.log(trans.data);
             
@@ -64,7 +64,7 @@ export default function TransactionContextProvider(props) {
 
 
     function addTransaction(transaction){
-        return axios.post(`http://localhost:5000/transactions`,transaction)
+        return axios.post(`${baseUrl}/transactions`,transaction)
         .then((trans)=>{
             
           
@@ -76,7 +76,7 @@ export default function TransactionContextProvider(props) {
         })
     }
     function deleteTransaction(id) {
-        return axios.delete(`http://localhost:5000/transactions/${id}`)
+        return axios.delete(`${baseUrl}/transactions/${id}`)
             .then((trans) => {
                 // console.log('Transaction deleted:', trans);
                
